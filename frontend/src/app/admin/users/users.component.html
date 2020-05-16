@@ -1,3 +1,26 @@
-<p>
-  users works!
-</p>
+<h1>Users Admin</h1>
+<div class="container row">
+  <div class="col-md-6">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>
+          <button class="btn btn-primary" type="button">Show Details</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    Display User Details and Add user here.
+  </div>
+</div>
