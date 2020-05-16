@@ -16,7 +16,7 @@
           <td>{{user.id}}</td>
           <td>{{user.name}}</td>
           <td>
-            <button class="btn btn-primary" type="button">Show Details</button>
+            <button (click)="viewUser(user.id)" class="btn btn-primary" type="button">Show Details</button>
           </td>
         </tr>
         </tbody>
@@ -24,9 +24,7 @@
     </div>
     <div class="col-md-6">
       <app-adduser (userAddedEvent)="refreshData()" *ngIf="action === 'add'" [user]="selectedUser"></app-adduser>
-    </div>
-    <div class="col-md-6">
-      Display User Details and Add user here.
+      <app-viewuser *ngIf="action === 'view'" [user]="selectedUser"></app-viewuser>
     </div>
   </div>
 </div>
