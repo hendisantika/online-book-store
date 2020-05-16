@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/user";
 import {HttpClientService} from "../../service/http-client.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-users',
@@ -9,14 +10,23 @@ import {HttpClientService} from "../../service/http-client.service";
 })
 export class UsersComponent implements OnInit {
   users: Array<User>;
+  selectedUser: User;
+  action: string;
 
-  constructor(private httpClientService: HttpClientService) {
+  constructor(private httpClientService: HttpClientService, private router: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.httpClientService.getUsers().subscribe(
       response => this.handleSuccessfulResponse(response),
     );
+    this.activatedRoute.queryParams.subscribe(
+      (params) => {
+        this.action = params['action']
+      }
+    );
+
     this.users = new Array<User>();
 
     const user1 = new User();
@@ -37,5 +47,10 @@ export class UsersComponent implements OnInit {
 
   handleSuccessfulResponse(response) {
     this.users = response;
+  }
+
+  addUser() {
+    this.selectedUser = new User();
+    this.router.navigate(['admin', 'users'], {queryParams: {action: 'add'}});
   }
 }
