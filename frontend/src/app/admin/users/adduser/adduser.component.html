@@ -1,3 +1,16 @@
-<p>
-  adduser works!
-</p>
+<h1>Add User</h1>
+<form #recievedUser="ngForm">
+
+  <label for="name">Name</label>
+  <input [(ngModel)]="user.name" class="form-control" id="name" name="name" placeholder="user name" type="text">
+
+  <label for="type">Type</label>
+  <input [(ngModel)]="user.type" class="form-control" id="type" name="name" placeholder="type name" type="text">
+
+  <label for="password">Password</label>
+  <input [(ngModel)]="user.password" class="form-control" id="password" name="password" placeholder="password"
+         type="password">
+
+  <br>
+  <button (click)="addUser()" class="btn btn-success" type="button">Save</button>
+</form>
