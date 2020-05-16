@@ -23,7 +23,7 @@
       </table>
     </div>
     <div class="col-md-6">
-      <app-adduser *ngIf="action === 'add'" [user]="selectedUser"></app-adduser>
+      <app-adduser (userAddedEvent)="refreshData()" *ngIf="action === 'add'" [user]="selectedUser"></app-adduser>
     </div>
     <div class="col-md-6">
       Display User Details and Add user here.

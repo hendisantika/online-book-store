@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from "../../../model/user";
 import {Router} from "@angular/router";
 import {HttpClientService} from "../../../service/http-client.service";
@@ -12,6 +12,10 @@ export class AdduserComponent implements OnInit {
   @Input()
   user: User
 
+  @Output()
+  userAddedEvent = new EventEmitter();
+
+
   constructor(private httpClientService: HttpClientService,
               private router: Router) {
   }
@@ -22,6 +26,7 @@ export class AdduserComponent implements OnInit {
   addUser() {
     this.httpClientService.addUser(this.user).subscribe(
       (user) => {
+        this.userAddedEvent.emit();
         this.router.navigate(['admin', 'users']);
       }
     );
