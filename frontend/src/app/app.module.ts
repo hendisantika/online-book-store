@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AdduserComponent} from './admin/users/adduser/adduser.component';
 import {FormsModule} from "@angular/forms";
 import {ViewuserComponent} from './admin/users/viewuser/viewuser.component';
+import {BooksComponent} from './admin/books/books.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {ViewuserComponent} from './admin/users/viewuser/viewuser.component';
     MenuComponent,
     UsersComponent,
     AdduserComponent,
-    ViewuserComponent
+    ViewuserComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
