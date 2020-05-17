@@ -1,4 +1,41 @@
 <div class="container row">
+  <div class="col-md-2">
+    <h1>Books</h1>
+  </div>
+  <div class="col-md-10 custom-products-cart-container">
+    <div class="offset-md-8">
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+          <br>
+          <a aria-expanded="false" class="btn btn-info btn-lg" data-toggle="dropdown" href="#" role="button">
+                        <span class="fa fa-shopping-cart">
+                            Books Added In Cart:
+                        </span>
+            <span class="caret">{{cartBooks.length}}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-cart" role="menu">
+            <li *ngFor="let item of cartBooks">
+              <div class="item product-cart-item row">
+                <div *ngIf="item" class="col-md-8">{{item.name}}</div>
+                <div *ngIf="item" class="col-md-4"><strong>${{item.price}}</strong></div>
+              </div>
+            </li>
+            <hr>
+            <li><a (click)="goToCart()" class="btn btn-small btn-success" role="button">View Cart</a></li>
+            <br>
+            <li *ngIf="cartBooks.length > 0">
+              <a (click)="emptyCart()" class="btn btn-small btn-warning" role="button">Empty Cart</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr>
+<hr>
+<div class="container row">
   <div *ngFor="let book of books;let i=index" class="col-md-4">
     <div class="card card-block">
       <img class="custom-image-style" height="300" img src="{{book.retrievedImage}}" style="margin-left: 60px;
