@@ -22,6 +22,6 @@
     </table>
   </div>
   <div class="col-md-6">
-    View Book Details/Add Book
+    <app-addbook *ngIf="action === 'add'" [book]="selectedBook"></app-addbook>
   </div>
 </div>
