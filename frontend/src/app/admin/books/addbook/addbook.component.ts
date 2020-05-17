@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Book} from "../../../model/book";
 import {HttpClientService} from "../../../service/http-client.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -14,6 +14,9 @@ export class AddbookComponent implements OnInit {
   book: Book;
   imgURL: any;
   private selectedFile;
+
+  @Output()
+  bookAddedEvent = new EventEmitter();
 
   constructor(private httpClientService: HttpClientService,
               private activedRoute: ActivatedRoute,
@@ -47,6 +50,7 @@ export class AddbookComponent implements OnInit {
           if (response.status === 200) {
             this.httpClientService.addBook(this.book).subscribe(
               (book) => {
+                this.bookAddedEvent.emit();
                 this.router.navigate(['admin', 'books']);
               }
             );
