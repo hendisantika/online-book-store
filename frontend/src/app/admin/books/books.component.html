@@ -22,7 +22,8 @@
     </table>
   </div>
   <div class="col-md-6">
-    <app-addbook (bookAddedEvent)="refreshData()" *ngIf="action === 'add'" [book]="selectedBook"></app-addbook>
+    <app-addbook (bookAddedEvent)="refreshData()" *ngIf="action === 'edit' || action === 'add'"
+                 [book]="selectedBook"></app-addbook>
     <app-viewbook (bookDeletedEvent)="refreshData()" *ngIf="action === 'view'" [book]="selectedBook"></app-viewbook>
   </div>
 </div>
