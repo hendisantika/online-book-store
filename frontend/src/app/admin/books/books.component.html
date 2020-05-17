@@ -15,7 +15,7 @@
         <td>{{book.id}}</td>
         <td>{{book.name}}</td>
         <td>
-          <button (click)="setBook(book.id)" class="btn btn-primary" type="button">Show Details</button>
+          <button (click)="viewBook(book.id)" class="btn btn-primary" type="button"> Show Details</button>
         </td>
       </tr>
       </tbody>
@@ -23,5 +23,6 @@
   </div>
   <div class="col-md-6">
     <app-addbook (bookAddedEvent)="refreshData()" *ngIf="action === 'add'" [book]="selectedBook"></app-addbook>
+    <app-viewbook *ngIf="action === 'view'" [book]="selectedBook"></app-viewbook>
   </div>
 </div>
