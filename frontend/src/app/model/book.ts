@@ -5,4 +5,5 @@ export class Book {
   price: number;
   picByte: string;
   retrievedImage: string;
+  isAdded: boolean;
 }
