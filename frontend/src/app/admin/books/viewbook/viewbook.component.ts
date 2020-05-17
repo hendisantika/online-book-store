@@ -29,4 +29,9 @@ export class ViewbookComponent implements OnInit {
       }
     );
   }
+
+  editBook() {
+    this.router.navigate(['admin', 'books'], {queryParams: {action: 'edit', id: this.book.id}});
+  }
+
 }
