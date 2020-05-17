@@ -1,29 +1,31 @@
-<h1>Books Admin</h1>
-<a (click)="addBook()" (click)="addBook()" class="btn btn-primary mb-3">Add New Book</a>
-<div class="container row">
-  <div class="col-md-6">
-    <table class="table">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Book Name</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let book of books">
-        <td>{{book.id}}</td>
-        <td>{{book.name}}</td>
-        <td>
-          <button (click)="viewBook(book.id)" class="btn btn-primary" type="button"> Show Details</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-md-6">
-    <app-addbook (bookAddedEvent)="refreshData()" *ngIf="action === 'edit' || action === 'add'"
-                 [book]="selectedBook"></app-addbook>
-    <app-viewbook (bookDeletedEvent)="refreshData()" *ngIf="action === 'view'" [book]="selectedBook"></app-viewbook>
+<div class="container">
+  <h1>Books Admin</h1>
+  <a (click)="addBook()" (click)="addBook()" class="btn btn-primary mb-3">Add New Book</a>
+  <div class="container row">
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Book Name</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{book.id}}</td>
+          <td>{{book.name}}</td>
+          <td>
+            <button (click)="viewBook(book.id)" class="btn btn-primary" type="button"> Show Details</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <app-addbook (bookAddedEvent)="refreshData()" *ngIf="action === 'edit' || action === 'add'"
+                   [book]="selectedBook"></app-addbook>
+      <app-viewbook (bookDeletedEvent)="refreshData()" *ngIf="action === 'view'" [book]="selectedBook"></app-viewbook>
+    </div>
   </div>
 </div>
