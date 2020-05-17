@@ -1,5 +1,5 @@
 <h1>Add Book Admin</h1>
-
+<h1>{{book.id == null ? 'Add' : 'Edit'}} Book - {{book.id}}</h1>
 <form>
   <label for="name">Name</label>
   <input [(ngModel)]="book.name" class="form-control" id="name" name="name" placeholder="Book Name" type="text">
