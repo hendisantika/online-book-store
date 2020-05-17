@@ -1,25 +1,27 @@
-<h1>Book Details</h1>
+<div class="bookDetails">
+  <h2>Book Details</h2>
 
-<table>
-  <tr>
-    <td>Book Id</td>
-    <td>{{book.id}}</td>
-  </tr>
-  <tr>
-    <td>Book Name</td>
-    <td>{{book.name}}</td>
-  </tr>
-  <tr>
-    <td>Book Author</td>
-    <td>{{book.author}}</td>
-  </tr>
-  <tr>
-    <td>Book Price</td>
-    <td>{{book.price}}</td>
-  </tr>
-</table>
-<br>
-<img height="200" src="{{book.retrievedImage}}" width="200">
-<br><br>
-
-<a (click)="deleteBook()" class="btn btn-small btn-danger">delete</a>
+  <table>
+    <tr>
+      <td>Book Id</td>
+      <td>{{book.id}}</td>
+    </tr>
+    <tr>
+      <td>Book Name</td>
+      <td>{{book.name}}</td>
+    </tr>
+    <tr>
+      <td>Book Author</td>
+      <td>{{book.author}}</td>
+    </tr>
+    <tr>
+      <td>Book Price</td>
+      <td>{{book.price}}</td>
+    </tr>
+  </table>
+  <br>
+  <img height="200" src="{{book.retrievedImage}}" width="200">
+  <br><br>
+  <a (click)="editBook()" class="btn btn-small btn-warning">edit</a>
+  <a (click)="deleteBook()" class="btn btn-small btn-danger">delete</a>
+</div>
