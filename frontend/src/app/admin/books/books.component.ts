@@ -31,6 +31,17 @@ export class BooksComponent implements OnInit {
     );
   }
 
+  refreshData() {
+    this.httpClientService.getBooks().subscribe(
+      response => this.handleSuccessfulResponse(response)
+    );
+    this.activatedRoute.queryParams.subscribe(
+      (params) => {
+        this.action = params['action'];
+      }
+    );
+  }
+
   handleSuccessfulResponse(response) {
     this.books = response;
   }
