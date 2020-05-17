@@ -1,3 +1,20 @@
-<p>
-  shopbook works!
-</p>
+<div class="container row">
+  <div *ngFor="let book of books;let i=index" class="col-md-4">
+    <div class="card card-block">
+      <img class="custom-image-style" height="300" img src="{{book.retrievedImage}}" style="margin-left: 60px;
+          margin-top: 10px" width="200">
+      <div class="book-desc-container row">
+        <div>
+          <p style="margin-left: 60px"><strong>{{book.name}}: ${{book.price}}</strong></p>
+          <p style="margin-left: 60px">{{book.author}}</p>
+        </div>
+        <div class="offset-md-4 col-md-4">
+          <button (click)="addToCart(book.id)" class="btn btn-primary btn-sm"
+          >Add To Cart
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
