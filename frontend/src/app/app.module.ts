@@ -13,6 +13,7 @@ import {BooksComponent} from './admin/books/books.component';
 import {AddbookComponent} from './admin/books/addbook/addbook.component';
 import {ViewbookComponent} from './admin/books/viewbook/viewbook.component';
 import {ShopbookComponent} from './shopbook/shopbook.component';
+import {HttpClientService} from "./service/http-client.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {ShopbookComponent} from './shopbook/shopbook.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [HttpClientModule, HttpClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
