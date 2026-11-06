@@ -1,9 +1,6 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
+# Build the Spring Boot backend with Gradle on JDK 25 and submit the dependency graph
+# so Dependabot alerts cover all Gradle dependencies.
+# See: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
 name: Java CI with Gradle
 
@@ -12,56 +9,62 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  JAVA_VERSION: '25'
+  JAVA_DISTRIBUTION: 'temurin'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
+      - uses: actions/checkout@v7
 
-    # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
-    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v6
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
 
-    - name: Build with Gradle Wrapper
-      run: ./gradlew build
+      # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
+      # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
 
-    # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
-    # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
-    #
-    # - name: Setup Gradle
-    #   uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
-    #   with:
-    #     gradle-version: '8.5'
-    #
-    # - name: Build with Gradle 8.5
-    #   run: gradle build
+      - name: Build with Gradle Wrapper
+        run: ./gradlew build
+
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-reports
+          path: build/reports/tests/
 
   dependency-submission:
-
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
     permissions:
       contents: write
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
+      - uses: actions/checkout@v7
 
-    # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
-    # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
-    - name: Generate and submit dependency graph
-      uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v6
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+
+      # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
+      # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
+      - name: Generate and submit dependency graph
+        uses: gradle/actions/dependency-submission@v6
