@@ -43,7 +43,7 @@ public class UserController {
 
     @DeleteMapping(path = {"/{id}"})
     public User deleteUser(@PathVariable("id") long id) {
-        User user = userRepository.getOne(id);
+        User user = userRepository.getReferenceById(id);
         userRepository.deleteById(id);
         return user;
     }

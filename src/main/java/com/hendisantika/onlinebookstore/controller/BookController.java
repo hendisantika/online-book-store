@@ -56,7 +56,7 @@ public class BookController {
 
     @DeleteMapping(path = {"/{id}"})
     public Book deleteBook(@PathVariable("id") long id) {
-        Book book = bookRepository.getOne(id);
+        Book book = bookRepository.getReferenceById(id);
         bookRepository.deleteById(id);
         return book;
     }
