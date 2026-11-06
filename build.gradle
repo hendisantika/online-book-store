@@ -1,3 +1,13 @@
+buildscript {
+    // commons-lang3 < 3.18.0 (CVE, Dependabot alert #136) arrives transitively via
+    // spring-boot-gradle-plugin -> spring-boot-buildpack-platform -> commons-compress.
+    // Dependabot cannot update transitive Gradle deps, so force a patched version here.
+    // Remove once spring-boot-gradle-plugin ships commons-lang3 >= 3.18.0 itself.
+    configurations.classpath {
+        resolutionStrategy.force 'org.apache.commons:commons-lang3:3.21.0'
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '4.1.2'
     id 'io.spring.dependency-management' version '1.1.7'
