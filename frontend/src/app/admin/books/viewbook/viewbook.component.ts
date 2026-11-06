@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-viewbook',
+  standalone: false,
   templateUrl: './viewbook.component.html',
   styleUrls: ['./viewbook.component.css']
 })

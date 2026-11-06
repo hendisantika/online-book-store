@@ -5,6 +5,7 @@ import {HttpClientService} from "../../../service/http-client.service";
 
 @Component({
   selector: 'app-adduser',
+  standalone: false,
   templateUrl: './adduser.component.html',
   styleUrls: ['./adduser.component.css']
 })
