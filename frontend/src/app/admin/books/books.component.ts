@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-books',
+  standalone: false,
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css']
 })

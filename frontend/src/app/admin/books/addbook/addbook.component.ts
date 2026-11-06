@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-addbook',
+  standalone: false,
   templateUrl: './addbook.component.html',
   styleUrls: ['./addbook.component.css']
 })

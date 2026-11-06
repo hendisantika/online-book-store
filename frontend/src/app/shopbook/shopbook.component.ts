@@ -5,6 +5,7 @@ import {HttpClientService} from "../service/http-client.service";
 
 @Component({
   selector: 'app-shopbook',
+  standalone: false,
   templateUrl: './shopbook.component.html',
   styleUrls: ['./shopbook.component.css']
 })

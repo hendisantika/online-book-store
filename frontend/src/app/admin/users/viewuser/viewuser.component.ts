@@ -5,6 +5,7 @@ import {HttpClientService} from "../../../service/http-client.service";
 
 @Component({
   selector: 'app-viewuser',
+  standalone: false,
   templateUrl: './viewuser.component.html',
   styleUrls: ['./viewuser.component.css']
 })

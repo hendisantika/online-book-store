@@ -22,7 +22,7 @@ Simple online book store: a Spring Boot REST backend (books & users, MySQL via S
 - JDK 25 (e.g. [Eclipse Temurin](https://adoptium.net/)) — Gradle toolchain is set to Java 25
 - MySQL running on `localhost:3306` with user `root` / password `root`
   (the `online_book_store` database is created automatically — see `src/main/resources/application.properties`)
-- Node.js & npm + Angular CLI for the frontend
+- Node.js `^22.22.3 || ^24.15.0 || >=26` & npm for the frontend (Angular 22)
 
 ### Things to do
 
@@ -32,12 +32,15 @@ Simple online book store: a Spring Boot REST backend (books & users, MySQL via S
 4. Run the application: `./gradlew bootRun`
 5. Open new terminal console then go inside frontend folder: `cd frontend`
 6. Run `npm install`
-7. Run `ng serve -o`
+7. Run `npm start -- -o` (or `npx ng serve -o`)
+8. Run frontend unit tests (Vitest): `npm test -- --watch=false`
 
 ### CI/CD & dependency updates
 
 - **GitHub Actions** (`.github/workflows/gradle.yml`): builds and tests the backend on JDK 25 (Temurin) for every push
   and pull request to `master`, and submits the Gradle dependency graph for Dependabot alerts.
+- **GitHub Actions** (`.github/workflows/frontend.yml`): runs `npm ci`, the Angular unit tests (Vitest) and a production
+  build of `frontend/` on Node.js 24 for every push and pull request to `master` that touches the frontend.
 - **Dependabot** (`.github/dependabot.yml`):
   - Gradle — daily, Spring Boot and minor/patch updates grouped
   - GitHub Actions — weekly, grouped
