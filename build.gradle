@@ -4,7 +4,7 @@ buildscript {
     // Dependabot cannot update transitive Gradle deps, so force a patched version here.
     // Remove once spring-boot-gradle-plugin ships commons-lang3 >= 3.18.0 itself.
     configurations.classpath {
-        resolutionStrategy.force 'org.apache.commons:commons-lang3:3.21.0'
+        resolutionStrategy.force 'org.apache.commons:commons-lang3:3.22.0'
     }
 }
 
